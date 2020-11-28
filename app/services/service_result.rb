@@ -11,6 +11,6 @@ class ServiceResult
   end
 
   def error_messages
-    errors.map(&:to_s)
+    errors.map { |error| error.to_s.humanize }
   end
 end

@@ -9,8 +9,8 @@ module CommitsFeed
       @headers = { 'Accept': 'application/vnd.github.v3+json' }
     end
 
-    def resource(options)
-      url = url_with_params(options)
+    def resource(filters)
+      url = url_with_params(filters)
 
       RestClient::Resource.new(url, headers: headers)
     end
@@ -19,8 +19,8 @@ module CommitsFeed
 
     attr_reader :url, :headers
 
-    def url_with_params(options)
-      "#{url}?#{URI.encode_www_form(options)}"
+    def url_with_params(filters)
+      "#{url}?#{URI.encode_www_form(filters)}"
     end
   end
 end

@@ -13,9 +13,9 @@ module CommitsFeed
     attr_reader :owner, :repo, :options
 
     def call!
-      response = fetch_commits
+      raw_commits = fetch_commits
 
-      @data = JSON.parse(response)
+      @data = Response.new(raw_commits).parse
     end
 
     def fetch_commits

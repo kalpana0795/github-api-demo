@@ -1,0 +1,60 @@
+.custom-href {
+  color: #24292e;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.commit-message {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.card {
+  margin: 1rem;
+  :hover {
+    background-color: #f6f8fa;
+  }
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.sha-link {
+  text-align: center;
+}
+
+.sha-link a {
+  font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.mt-80 {
+  margin-top: 80px !important;
+}
+
+.filters {
+  margin: 0.15rem;
+}
+
+.mt-2-rem {
+  margin-top: 2rem;
+}
+
+.m-1-rem {
+  margin: 1rem;
+}
+
+.list-group-item-danger {
+  margin-bottom: 1rem;
+}

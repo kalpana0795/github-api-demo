@@ -1,0 +1,58 @@
+require 'rails_helper'
+
+describe CommitsController, type: :controller do
+  describe 'GET index' do
+    let(:owner) { 'owner' }
+    let(:repo) { 'repo' }
+    let(:success) { true }
+    let(:data) { 'data' }
+    let(:error_messages) { [] }
+    let(:result) { double(success?: success, data: data, error_messages: error_messages) }
+
+    let(:filters) do
+      { sha: 'sha', page: 'page', per_page: 'per_page' }
+    end
+
+    let(:params) do
+      { sha: 'sha', page: 'page', per_page: 'per_page', owner: owner, repo: repo }
+    end
+
+    subject { get :index, params: params }
+
+    before do
+      expect(CommitsFeed::Request).to receive(:new)
+        .once
+        .with(owner: owner, repo: repo, filters: filters)
+        .and_return(double(call: result))
+    end
+
+    context 'calls commits feed request with correct arguments' do
+      it { is_expected.to be_successful }
+    end
+
+    context 'when service result is successful' do
+      before { subject }
+
+      it 'assigns @commits value' do
+        expect(assigns(:commits)).to eq data
+      end
+
+      it 'does not assign @errors value' do
+        expect(assigns(:errors)).to eq nil
+      end
+    end
+
+    context 'when service result is not successful' do
+      let(:success) { false }
+      before { subject }
+
+      it 'does not assign @commits value' do
+        expect(assigns(:commits)).to eq nil
+      end
+
+      it 'assigns @errors value' do
+        expect(assigns(:errors)).to eq error_messages
+      end
+    end
+  end
+end

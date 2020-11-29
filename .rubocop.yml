@@ -19,3 +19,6 @@ Style/ClassAndModuleChildren:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 15

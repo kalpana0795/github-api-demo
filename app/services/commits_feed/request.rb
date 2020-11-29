@@ -28,6 +28,9 @@ module CommitsFeed
       @errors << 'Internal server error'
     rescue RestClient::Forbidden
       @errors << 'Forbidden'
+    rescue StandardError => e
+      @errors << 'Something went wrong.'
+      Rails.logger.info e
     end
   end
 end

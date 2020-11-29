@@ -24,6 +24,7 @@ class BaseService
 
   def handle_unhandled_error(error)
     errors << error
+    Rails.logger.info error
   end
 
   def build_service_result

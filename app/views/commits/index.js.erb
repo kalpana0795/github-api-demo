@@ -1,1 +1,3 @@
-$('.commits-list').html('<%= j render 'commits', commits: @commits, errors: @errors %>')
+$('.commits-list').html('<%= j render 'commits', commits: @commits, errors: @errors, owner: @owner, repo: @repo %>')
+$('#owner').val('<%= @owner %>')
+$('#repo').val('<%= @repo %>')

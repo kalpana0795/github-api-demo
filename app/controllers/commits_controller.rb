@@ -1,7 +1,9 @@
 class CommitsController < ApplicationController
+  before_action :set_owner_and_repo
+
   def index
     result = CommitsFeed::Request.new(
-      owner: 'rest-client', repo: 'rest-client', filters: filters
+      owner: @owner, repo: @repo, filters: filters
     ).call
 
     if result.success?
@@ -14,6 +16,11 @@ class CommitsController < ApplicationController
   private
 
   def filters
-    params.permit(:sha, :page, :per_page).to_unsafe_h.symbolize_keys
+    params.permit(:sha, :page, :per_page).to_h.symbolize_keys
+  end
+
+  def set_owner_and_repo
+    @owner = params[:owner].presence || ENV.fetch('DEFAULT_OWNER')
+    @repo = params[:repo].presence || ENV.fetch('DEFAULT_REPO')
   end
 end

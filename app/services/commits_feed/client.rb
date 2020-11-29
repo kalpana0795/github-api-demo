@@ -12,7 +12,12 @@ module CommitsFeed
     def resource(filters)
       url = url_with_params(filters)
 
-      RestClient::Resource.new(url, headers: headers)
+      RestClient::Resource.new(
+        url,
+        headers: headers,
+        timeout: TIMEOUT_SECONDS,
+        open_timeout: OPEN_TIMEOUT_SECONDS
+      )
     end
 
     private

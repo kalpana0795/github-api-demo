@@ -1,0 +1,17 @@
+<% if errors.present? %>
+  <%= render 'errors', errors: errors %>
+<% elsif commits.blank? %>
+  <div class='row'>
+    <div class='col-12'>
+      No commits found!
+    </div>
+  </div>
+<% else %>
+  <h4 class='mt-small'>
+    <a href='<%= owner_url(owner) %>'><%= owner %></a> / 
+    <a class='font-weight-600' href='<%= "#{owner_url(owner)}/#{repo}" %>'><%= repo %></a>
+  </h4>
+  <% commits.each do |commit| %>
+    <%= render 'commit_row', commit: commit %>
+  <% end %>
+<% end %>

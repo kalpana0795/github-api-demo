@@ -1,9 +1,9 @@
-.custom-href {
-  color: #24292e;
+body {
+  background-color: #fafbfc;
 }
 
-.card-title {
-  font-weight: 600;
+.custom-href {
+  color: #24292e;
 }
 
 .commit-message {
@@ -39,22 +39,22 @@
   border-color: #545b62;
 }
 
-.mt-80 {
-  margin-top: 80px !important;
+.mt-4r {
+  margin-top: 4rem;
 }
 
-.filters {
-  margin: 0.15rem;
-}
-
-.mt-2-rem {
+.mt-2r {
   margin-top: 2rem;
 }
 
-.m-1-rem {
-  margin: 1rem;
+.mt-small {
+  margin-top: 0.4rem;
 }
 
 .list-group-item-danger {
   margin-bottom: 1rem;
+}
+
+.font-weight-600 {
+  font-weight: 600;
 }

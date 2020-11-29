@@ -1,0 +1,29 @@
+<%= form_tag root_path, method: :get, remote: true do %> 
+  <div class='row'>
+    <div class='col-sm-4 mt-small'>
+      <label for='sha' class='form-control-label'>Owner:</label>
+      <%= text_field_tag 'owner', @owner, class: 'form-control', required: true %>
+    </div>
+    <div class='col-sm-4 mt-small'>
+      <label for='sha' class='form-control-label'>Repo:</label>
+      <%= text_field_tag 'repo', @repo, class: 'form-control', required: true %>
+    </div>
+  </div>
+  <div class='row mt-small'>
+    <div class='col-sm-4 mt-small'>
+      <label for='sha' class='form-control-label'>Branch/SHA:</label>
+      <%= text_field_tag 'sha', params[:sha].presence || 'master', class: 'form-control' %>
+    </div>
+    <div class='col-sm-3 mt-small'>
+      <label for='page' class='form-control-label'>Page:</label>
+      <%= number_field_tag 'page', params[:page].presence || 1, class: 'form-control', min: 1, step: 1 %>
+    </div>
+    <div class='col-sm-3 mt-small'>
+      <label for='per_page' class='form-control-label'>Per Page:</label>
+      <%= number_field_tag 'per_page', params[:per_page].presence || 30, class: 'form-control', min: 1, max:100, step: 1 %>
+    </div>
+    <div class='col-sm-2 mt-small'>
+      <%= submit_tag 'Search', class: 'btn btn-primary mt-2r' %>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,10 @@
+<div class='errors-list'>
+  <%= render('errors', errors: @errors) if @errors.present? %>
+</div>
 <%= render 'filters' %>
 <hr class='mt-2r'>
 <div class='row'>
   <div class='col-12 commits-list'>
-    <%= render 'commits', commits: @commits, errors: @errors, owner: @owner, repo: @repo %>
+    <%= render('commits', commits: @commits, owner: @owner, repo: @repo) if @commits.present? %>
   </div>
 </div>

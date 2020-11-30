@@ -1,3 +1,9 @@
-$('.commits-list').html('<%= j render 'commits', commits: @commits, errors: @errors, owner: @owner, repo: @repo %>')
-$('#owner').val('<%= @owner %>')
-$('#repo').val('<%= @repo %>')
+<% if @errors.present? %>
+  $('.errors-list').html('<%= j render 'errors', errors: @errors %>')
+  $('.commits-list').html('')
+<% else %>
+  $('.errors-list').html('')
+  $('.commits-list').html('<%= j render 'commits', commits: @commits, owner: @owner, repo: @repo %>')
+  $('#owner').val('<%= @owner %>')
+  $('#repo').val('<%= @repo %>')
+<% end %>

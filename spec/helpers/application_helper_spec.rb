@@ -6,7 +6,7 @@ describe ApplicationHelper do
     subject { helper.readable_date(iso8601date) }
 
     it 'returns date in readable format' do
-      is_expected.to eq '14 Apr 2011'
+      is_expected.to eq '14 Apr 2011 at 16:00:49 UTC'
     end
   end
 

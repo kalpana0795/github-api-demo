@@ -1,6 +1,6 @@
 module ApplicationHelper
   def readable_date(date)
-    DateTime.parse(date).strftime('%d %b %Y')
+    DateTime.parse(date).strftime('%d %b %Y at %T UTC')
   end
 
   def owner_url(owner)

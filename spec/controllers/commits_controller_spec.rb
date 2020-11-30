@@ -13,7 +13,7 @@ describe CommitsController, type: :controller do
     let(:result) { double(success?: success, data: data, error_messages: error_messages) }
 
     let(:filters) do
-      { sha: sha, page: page, per_page: per_page }
+      { 'sha' => sha, 'page' => page, 'per_page' => per_page }
     end
 
     let(:params) do

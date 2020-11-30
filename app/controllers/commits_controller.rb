@@ -16,7 +16,7 @@ class CommitsController < ApplicationController
   private
 
   def filters
-    params.permit(:sha, :page, :per_page).to_h.symbolize_keys
+    params.slice(:sha, :page, :per_page).to_enum.to_h
   end
 
   def set_owner_and_repo

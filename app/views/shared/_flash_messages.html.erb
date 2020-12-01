@@ -1,0 +1,8 @@
+<% unless flash.empty? %>
+  <% flash[:danger].each do |error| %>
+    <div class="alert alert-danger alert-dismissable">
+      <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <%= error %>
+    </div>
+  <% end %>
+<% end %>

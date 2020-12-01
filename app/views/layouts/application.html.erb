@@ -16,6 +16,9 @@
     <div class='container'>
       <h3 class='mt-4r'>Github Repo commit history</h3>
       <hr class='mt-2r'>
+      <div class="flashMessages">
+        <%= render partial: 'shared/flash_messages' %>
+      </div>
       <%= yield %>
     </div>
   </body>

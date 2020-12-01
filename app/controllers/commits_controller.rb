@@ -9,7 +9,7 @@ class CommitsController < ApplicationController
     if result.success?
       @commits = CommitDecorator.decorate_collection(result.data)
     else
-      @errors = result.error_messages
+      flash.now[:danger] = result.error_messages
     end
   end
 

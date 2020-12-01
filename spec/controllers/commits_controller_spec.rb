@@ -49,8 +49,8 @@ describe CommitsController, type: :controller do
         expect(assigns(:commits)).to eq decorated_commits
       end
 
-      it 'does not assign @errors value' do
-        expect(assigns(:errors)).to eq nil
+      it 'does not set error in flash' do
+        expect(flash[:danger]).to eq nil
       end
     end
 
@@ -62,8 +62,8 @@ describe CommitsController, type: :controller do
         expect(assigns(:commits)).to eq nil
       end
 
-      it 'assigns @errors value' do
-        expect(assigns(:errors)).to eq error_messages
+      it 'sets error in flash' do
+        expect(flash[:danger]).to eq error_messages
       end
     end
 

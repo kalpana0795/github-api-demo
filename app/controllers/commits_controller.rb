@@ -2,14 +2,14 @@ class CommitsController < ApplicationController
   before_action :set_owner_and_repo, :set_default_params
 
   def index
-    result = CommitsFeed::Request.new(
+    outcome = FetchCommits.run(
       owner: @owner, repo: @repo, filters: filters
-    ).call
+    )
 
-    if result.success?
-      @commits = CommitDecorator.decorate_collection(result.data)
+    if outcome.valid?
+      @commits = outcome.result
     else
-      flash.now[:danger] = result.error_messages
+      flash.now[:danger] = outcome.error_messages.presence || outcome.errors.full_messages
     end
   end
 

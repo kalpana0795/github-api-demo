@@ -7,10 +7,9 @@ describe CommitsController, type: :controller do
     let(:sha) { 'sha' }
     let(:page) { 'page' }
     let(:per_page) { 'per_page' }
-    let(:success) { true }
-    let(:data) { 'data' }
-    let(:error_messages) { [] }
-    let(:result) { double(success?: success, data: data, error_messages: error_messages) }
+    let(:valid) { true }
+    let(:result) { 'result' }
+    let(:error_messages) { 'error_messages' }
 
     let(:filters) do
       { 'sha' => sha, 'page' => page, 'per_page' => per_page }
@@ -23,30 +22,28 @@ describe CommitsController, type: :controller do
     subject { get :index, params: params }
 
     before do
-      expect(CommitsFeed::Request).to receive(:new)
+      expect(FetchCommits).to receive(:run)
         .once
         .with(owner: owner, repo: repo, filters: filters)
-        .and_return(double(call: result))
+        .and_return(
+          double(
+            valid?: valid,
+            result: result,
+            error_messages: error_messages,
+            errors: double(full_messages: error_messages)
+          )
+        )
     end
 
     context 'calls commits feed request with correct arguments' do
       it { is_expected.to be_successful }
     end
 
-    context 'when service result is successful' do
-      let(:decorated_commits) { ['decorated_commits'] }
-
-      before do
-        expect(CommitDecorator).to receive(:decorate_collection)
-          .once
-          .with(data)
-          .and_return(decorated_commits)
-
-        subject
-      end
+    context 'when outcome successful' do
+      before { subject }
 
       it 'assigns @commits value' do
-        expect(assigns(:commits)).to eq decorated_commits
+        expect(assigns(:commits)).to eq result
       end
 
       it 'does not set error in flash' do
@@ -54,8 +51,8 @@ describe CommitsController, type: :controller do
       end
     end
 
-    context 'when service result is not successful' do
-      let(:success) { false }
+    context 'when outcome is not successful' do
+      let(:valid) { false }
       before { subject }
 
       it 'does not assign @commits value' do

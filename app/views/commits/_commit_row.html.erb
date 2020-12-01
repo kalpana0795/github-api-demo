@@ -6,25 +6,25 @@
           <div class='col-md-8 col-lg-9'>
             <h6 class='card-title font-weight-600'>
               <div class='commit-message'>
-                <a href='<%= commit[:url] %>' class='custom-href'>
-                  <%= commit[:message] %>
+                <a href='<%= commit.url %>' class='custom-href'>
+                  <%= commit.message %>
                 </a>
               </div>
             </h6>
             <small class='text-muted'>
               <b>
-                <a href='<%= commit[:author_url] %>' class='custom-href'><%= commit[:author] %></a>
+                <a href='<%= commit.author_url %>' class='custom-href'><%= commit.author %></a>
               </b> authored and 
               <b>
-              <a href='<%= commit[:committer_url] %>' class='custom-href'><%= commit[:committer] %></a>
-              </b> committed on <%= readable_date(commit[:committer_date]) %>
+              <a href='<%= commit.committer_url %>' class='custom-href'><%= commit.committer %></a>
+              </b> committed on <%= commit.readable_date %>
             </small>
           </div>
           <div class='col-md-4 col-lg-3 sha-link mt-small'>
-            <a href='<%= commit[:url] %>' class='btn btn-outline-primary'>
-              <%= commit[:sha][..6] %>
+            <a href='<%= commit.url %>' class='btn btn-outline-primary'>
+              <%= commit.shortened_sha %>
             </a>
-            <% if commit[:verified] %>
+            <% if commit.verified %>
               <button class="btn btn-secondary btn-sm">Verified</button>
             <% end %>
           </div>

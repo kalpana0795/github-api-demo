@@ -8,21 +8,22 @@ describe CommitsFeed::Response do
   let(:parsed_commits) do
     [
       {
-        sha: '6dcb09b5b57875f334f61aebed695e2e4193db5e',
-        url: 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e',
-        message: 'Fix all the bugs',
-        committer_date: '2011-04-14T16:00:49Z',
-        verified: false,
-        author: 'octocat',
-        author_url: 'https://github.com/octocat',
-        committer: 'octocat',
-        committer_url: 'https://github.com/octocat'
+        'sha' => '6dcb09b5b57875f334f61aebed695e2e4193db5e',
+        'url' => 'https://github.com/octocat/Hello-World/commit/6dcb09b5b57875f334f61aebed695e2e4193db5e',
+        'message' => 'Fix all the bugs',
+        'committer_date' => '2011-04-14T16:00:49Z',
+        'verified' => false,
+        'author' => 'octocat',
+        'author_url' => 'https://github.com/octocat',
+        'committer' => 'octocat',
+        'committer_url' => 'https://github.com/octocat',
+        'parents_sha' => ['6dcb09b5b57875f334f61aebed695e2e4193db5e']
       }
     ]
   end
 
   describe 'parse' do
-    subject { described_class.new(commits).parse }
+    subject { described_class.new(commits).parse.map(&:as_json) }
 
     it 'returns parsed commits' do
       is_expected.to eq parsed_commits

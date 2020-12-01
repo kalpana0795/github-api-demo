@@ -7,7 +7,7 @@ class CommitsController < ApplicationController
     ).call
 
     if result.success?
-      @commits = result.data
+      @commits = CommitDecorator.decorate_collection(result.data)
     else
       @errors = result.error_messages
     end

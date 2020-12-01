@@ -34,10 +34,19 @@ describe CommitsController, type: :controller do
     end
 
     context 'when service result is successful' do
-      before { subject }
+      let(:decorated_commits) { ['decorated_commits'] }
+
+      before do
+        expect(CommitDecorator).to receive(:decorate_collection)
+          .once
+          .with(data)
+          .and_return(decorated_commits)
+
+        subject
+      end
 
       it 'assigns @commits value' do
-        expect(assigns(:commits)).to eq data
+        expect(assigns(:commits)).to eq decorated_commits
       end
 
       it 'does not assign @errors value' do

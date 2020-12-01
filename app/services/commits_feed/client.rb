@@ -2,7 +2,7 @@ module CommitsFeed
   class Client
     BASE_URL = ENV.fetch('COMMITS_FEED_BASE_URL')
     TIMEOUT_SECONDS = 30
-    OPEN_TIMEOUT_SECONDS = 5
+    OPEN_TIMEOUT_SECONDS = 30
 
     def initialize(owner:, repo:)
       @url = "#{BASE_URL}/#{owner}/#{repo}/commits"

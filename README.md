@@ -12,7 +12,7 @@
 #### Instructions
 
 * Clone the git repository
-* Run the command `bundle install`
+* Run the commands `bundle install` and `yarn install`
 * Create `database.yml` by referring to `database.example.yml` and updating the `username/password`
 * Setup the database using the command `bundle exec rails db:setup`
 * Run the test suite using `bundle exec rspec` to confirm if the setup is successful.
@@ -45,6 +45,17 @@
 
 
 #### Details
+* Application to view commit history of github repository
+* Filter results by changing the page number, owner, repo and branch/sha of commits.
+* Control the number of results by passing commits per page as parameter.
+* Currently the rate limit is 60 requests per hour.
 
+#### References
+Github REST API: https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#list-commits
 
 #### Future Enhancements
+* Feature specs to test the UI level functionality can be added for checking the functionality using libs such as capybara, cucumber, siteprism.
+* Fetched results can be stored in the database/cache to reduce number of API calls.
+* Sidekiq workers and cron jobs which run at specific intervals can be used to watch the repository and update the records in the database.
+* Formatted errors logging and notifying using services such as rollbar can be introduced.
+* Other filters can be introduced to filter commits by author, date, etc.
